@@ -8,18 +8,20 @@
 #include <GL/gl.h>
 #include <stdio.h>
 #include <stdlib.h>
+
+// TODO: Use GLUT's system time tools instead for cross-platform compatibility
 #include <sys/time.h>
 
-
 #include "Camera.hpp"
-#include "firework.h"
+#include "Fireworks.hpp"
 
+// TODO: Don't use this, Windows doesn't support it (yeah, ridiculous, right?)
 using namespace std;
 
 struct controller   
 {
     int frame;
-    camera * cam;
+    Camera * cam;
     f_display * fd;
     double last_T;
 };
@@ -49,11 +51,10 @@ void idle(void) {
 
 }
 
-
 void animate()
 {
 
-    camera.update();
+    cam.update();
     firework_display.update();
     glutPostRedisplay();
 }
