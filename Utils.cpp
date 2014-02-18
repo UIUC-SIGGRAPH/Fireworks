@@ -23,5 +23,9 @@ Vec::Vec(float x_, float y_, float z_)
 }
 Vec::~Vec(){return; }
 
+Vec Vec::add(Vec A, Vec B)
+{
+	return new Vec(A.x + B.x, A.y + B.y, A.z + B.z)
+}
 
 #endif

@@ -19,6 +19,7 @@ class Vec
 	public:
 		Vec(float x_, float y_, float z_);
 		~Vec();
+		Vec add(Vec A, Vec B);
 		float x;
 		float y;
 		float z;
