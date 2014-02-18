@@ -25,13 +25,9 @@ Spark::update()
 }
 
 
-
 Vector<Spark> Spark::children()
 {
-	if(age == 1000 && type == 0)
-	{
-		return create_explosion();
-	}	
+	return false;
 }
 
 #endif

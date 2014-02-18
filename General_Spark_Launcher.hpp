@@ -10,7 +10,6 @@
 class General_Spark_Launcher: public Spark 
 {
 	General_Spark_Launcher(Point start_pos, Vec start_vel);
-	~General_Spark_Launcher();
 	bool dead();
 	bool has_children();
 	Vector<Spark> children();

@@ -13,7 +13,7 @@ class Spark
 {
 public:
 	Spark(Point start_pos, Vec start_vel);
-	~Spark();
+	virtual ~Spark();
 	virtual void update();
 	virtual bool dead();
 	virtual bool has_children();
