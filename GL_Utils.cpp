@@ -1,6 +1,4 @@
 
-#ifndef _GL_UTILS_CPP_
-#define _GL_UTILS_CPP_
 
 #define GL_GLEXT_PROTOTYPES 1
 #define GL3_PROTOTYPES 1
@@ -45,4 +43,4 @@ GL_Model::draw()
 
 }
 
-#endif
+

@@ -1,8 +1,5 @@
 
 
-#ifndef _FIREWORKS_CPP_
-#define _FIREWORKS_CPP_
-
 #include <GL/gl.h>
 #include "Utils.hpp"
 
@@ -60,5 +57,3 @@ Vector<Spark> Spark::children()
 		return create_explosion();
 	}
 }
-
-#endif

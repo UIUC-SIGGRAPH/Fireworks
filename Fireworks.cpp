@@ -1,11 +1,3 @@
-
-
-
-
-
-#ifndef _FIREWORKS_CPP_
-#define _FIREWORKS_CPP_
-
 #include <GL/gl.h>
 #include "Utils.hpp"
 
@@ -64,5 +56,3 @@ Fireworks::draw()
 	model.set_geometry(buffer, buffer_size);
 	model.draw();
 }
-
-#endif

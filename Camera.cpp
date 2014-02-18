@@ -1,7 +1,4 @@
 
-#ifndef _CAMERA_CPP_
-#define _CAMERA_CPP_
-
 #define GL_GLEXT_PROTOTYPES 1
 #define GL3_PROTOTYPES 1
 #include <GL/gl.h>
@@ -37,5 +34,3 @@ Camera::position()
 {
 	return look_from;
 }
-
-#endif

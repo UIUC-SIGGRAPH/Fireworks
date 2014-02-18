@@ -3,11 +3,11 @@
 #define GL_GLEXT_PROTOTYPES 1
 #define GL3_PROTOTYPES 1
 
-
 #include <GL/glut.h>
 #include <GL/gl.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <glm.hpp>
 
 #include "Camera.hpp"
 #include "Fireworks.hpp"

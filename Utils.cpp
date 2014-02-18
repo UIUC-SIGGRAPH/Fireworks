@@ -1,7 +1,5 @@
 
 
-#ifndef _UTILS_HPP_
-#define _UTILS_HPP_
 
 #include "Utils.hpp"
 
@@ -28,4 +26,4 @@ Vec Vec::add(Vec A, Vec B)
 	return new Vec(A.x + B.x, A.y + B.y, A.z + B.z)
 }
 
-#endif
+
