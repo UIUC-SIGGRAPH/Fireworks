@@ -9,30 +9,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// TODO: Use GLUT's system time tools instead for cross-platform compatibility
-#include <sys/time.h>
-
 #include "Camera.hpp"
 #include "Fireworks.hpp"
 
-// TODO: Don't use this, Windows doesn't support it (yeah, ridiculous, right?)
-using namespace std;
-
-struct controller   
+struct controller
 {
     int frame;
     Camera * cam;
-    f_display * fd;
+    Fireworks * fd;
     double last_T;
 };
 
 controller cont;
 
 static double ftime(void) {
-    struct timeval t;
-    gettimeofday(&t, NULL);
-
-    return 1.0*t.tv_sec + 1e-6*t.tv_usec;
+	int time = glutGet(GLUT_ELAPSED_TIME);
+	return (double)time/1000;
 }
 
 void animate();
@@ -53,9 +45,8 @@ void idle(void) {
 
 void animate()
 {
-
-    cam.update();
-    firework_display.update();
+    cont.cam->update();
+    cont.fd->update();
     glutPostRedisplay();
 }
 
@@ -72,9 +63,9 @@ void display()
 
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-    camera.draw();
+    cont.cam->draw();
     glColor3f(0.0, 1.0, 1.0);
-    firework_display.draw();
+    cont.fd->draw();
     glFlush();
 }
 
@@ -105,8 +96,8 @@ void init()
     glClearColor (0.0, 0.0, 0.0, 0.0);
     glColor3f(1.0, 1.0, 1.0);
 
-    camera = new Camera(new Point(0.0, 6.0, -12.0), new Point(0.0, 0.0, 0.0));
-    firework_display = new Fireworks(new Point(0.0, 0.0, 0.0));
+    cont.cam = new Camera(new Point(0.0, 6.0, -12.0), new Point(0.0, 0.0, 0.0));
+    cont.fd = new Fireworks(new Point(0.0, 0.0, 0.0));
     
     glutMainLoop();
 
