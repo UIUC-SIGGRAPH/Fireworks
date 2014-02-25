@@ -3,9 +3,10 @@
 #define GL_GLEXT_PROTOTYPES 1
 #define GL3_PROTOTYPES 1
 
-#include "GL_Utils.h"
+#include "GL_Utils.hpp"
 
 #include <GL/gl.h>
+#include <GL/glext.h>
 #include <stdio.h>
 
 GL_Model::GL_Model()
@@ -18,7 +19,7 @@ GL_Model::~GL_Model()
 	glDeleteBuffers(1, &geometry_buffer);
 }
 
-GL_Model::set_geometry(float * geometry, unsigned int geometry_size_)
+void GL_Model::set_geometry(float * geometry, unsigned int geometry_size_)
 {
 	geometry_size = geometry_size_;
 	geometry_elements = geometry_size / (BYTES_PER_ELEMENT); 
@@ -26,7 +27,7 @@ GL_Model::set_geometry(float * geometry, unsigned int geometry_size_)
 	glBufferData(GL_ARRAY_BUFFER, geometry_size, geometry_, GL_DYNAMIC_DRAW);
 }
 
-GL_Model::draw()
+void GL_Model::draw()
 {
 	glBindBuffer(GL_ARRAY_BUFFER, geometry_buffer);
 

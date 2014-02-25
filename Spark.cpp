@@ -1,10 +1,7 @@
-
-
-#ifndef _FIREWORKS_CPP_
-#define _FIREWORKS_CPP_
-
 #include <GL/gl.h>
 #include "Utils.hpp"
+#include "Spark.hpp"
+
 
 Spark::Spark(Point start_pos, Vec start_vel)
 {
@@ -15,11 +12,11 @@ Spark::Spark(Point start_pos, Vec start_vel)
 
 Spark::~Spark()
 {
-	delete position;
-	delete velocity;
+	/*delete position;
+	delete velocity;*/
 }
 
-Spark::update()
+void Spark::update()
 {
 	position = add(position, velocity);
 }
@@ -29,5 +26,3 @@ Vector<Spark> Spark::children()
 {
 	return false;
 }
-
-#endif

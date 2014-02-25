@@ -1,10 +1,18 @@
+
+#include <stdlib.h>
 #include <GL/gl.h>
 #include "Utils.hpp"
+#include "Fireworks.hpp"
+#include "GL_Utils.hpp"
+#include "Camera.hpp"
+#include "Spark.hpp"
+#include <vector>
 
+using namespace std;
 
 Fireworks::Fireworks(Point start_pos, Camera camera_)
 {
-	sparks = new Vector<Spark>;
+	sparks = new vector<Spark>;
 	camera = camera_;
 }
 
@@ -17,20 +25,19 @@ Fireworks::~Fireworks()
 	delete sparks;
 }
 
-Fireworks::update()
+void Fireworks::update()
 {
-	Vector<Spark> new_sparks;
+	vector<Spark> new_sparks;
 	for(int i = 0; i < sparks.size(); i++)
 	{
 		sparks[i].update();
 		if(sparks[i].has_children())
 		{
-			Vector<Spark> temp = sparks[i].children();
+			vector<Spark> temp = sparks[i].children();
 			for(int i2 = 0; i2 < temp.size(); i2++)
 			{
 				new_sparks.push_back(temp[i2]);
 			}
-			delete temp;
 		}
 		if(sparks[i].dead)
 		{
@@ -43,14 +50,14 @@ Fireworks::update()
 	}
 }
 
-Fireworks::draw()
+void Fireworks::draw()
 {
 	int buffer_size = /*all the space we need*/;	//this is the number of bytes needed to store our geometry
-	float * buffer = malloc(buffer_size);
+	float * buffer = (float*)malloc(buffer_size);
 	for(int i = 0; i < sparks.size(); i++)
 	{
 		int offset = i * /*space of a spark*/;
-		sparks[i].fill_buffer(buffer + offest);		//adding an integer offset to the buffer pointer position in memory
+		sparks[i].fill_buffer(buffer + offset);		//adding an integer offset to the buffer pointer position in memory
 													//this will make it so that fill_buffer affects the correct memory location
 	}
 	model.set_geometry(buffer, buffer_size);

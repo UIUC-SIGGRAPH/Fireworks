@@ -16,21 +16,21 @@ Camera::Camera(Point look_from_, Point look_at_)
 
 Camera::~Camera()
 {
-	delete look_from;
-	delete look_at;
+	/*delete look_from;
+	delete look_at;*/
 }
 
-Camera::update()
+void Camera::update()
 {
 	return;
 }
 
-Camera::view()
+void Camera::view()
 {
 	//todo
 }
 
-Camera::position()
+Point Camera::position()
 {
 	return look_from;
 }
