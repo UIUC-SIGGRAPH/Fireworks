@@ -7,6 +7,7 @@
 #include <GL/gl.h>
 #include "Utils.hpp"
 
+using namespace std;
 
 class Fireworks
 {
