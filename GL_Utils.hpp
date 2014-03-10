@@ -18,6 +18,12 @@ class GL_Model
 		GLuint geometry_buffer;
 		unsigned int geometry_size;
 		unsigned int geometry_elements;
+
+		int vertexShader;
+		int fragmentShader;
+		int glslProgram;
+		int vertexPosHandle;
+		int MVPMatrixHandle;
 };
 
 #endif
