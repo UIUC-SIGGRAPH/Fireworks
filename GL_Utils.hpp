@@ -1,12 +1,8 @@
-
-
-#ifndef _GL_UTILS_H_
-#define _GL_UTILS_H_
+#ifndef _GL_UTILS_HPP_
+#define _GL_UTILS_HPP_
 
 #define GL_GLEXT_PROTOTYPES 1
 #define GL3_PROTOTYPES 1
-
-#include "gl_utils.h"
 
 #include <GL/gl.h>
 
@@ -21,6 +17,7 @@ class GL_Model
 		GLfloat * geometry;
 		GLuint geometry_buffer;
 		unsigned int geometry_size;
+		unsigned int geometry_elements;
 };
 
 #endif

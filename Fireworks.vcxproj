@@ -70,12 +70,18 @@
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Fireworks.cpp" />
+    <ClCompile Include="General_Spark_Launcher.cpp" />
+    <ClCompile Include="GL_Utils.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Spark.cpp" />
     <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.hpp" />
     <ClInclude Include="Fireworks.hpp" />
+    <ClInclude Include="General_Spark_Launcher.hpp" />
+    <ClInclude Include="GL_Utils.hpp" />
+    <ClInclude Include="Spark.hpp" />
     <ClInclude Include="Utils.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

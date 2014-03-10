@@ -1,11 +1,10 @@
-
-
-
 #ifndef _FIREWORKS_HPP_
 #define _FIREWORKS_HPP_
 
 #include <GL/gl.h>
 #include "Utils.hpp"
+#include "Camera.hpp"
+#include <vector>
 
 using namespace std;
 
@@ -18,7 +17,7 @@ public:
 	void draw();
 
 private:
-	Vector<Spark> sparks;
+	vector<Spark> sparks;
 	Camera camera;	//needed so that the sparks can face the camera
 	GL_Model model;
 };

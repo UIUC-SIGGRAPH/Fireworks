@@ -2,9 +2,14 @@
 
 #include <GL/gl.h>
 #include "Utils.hpp"
+#include "General_Spark_Launcher.hpp"
+#include "Spark.hpp"
+#include <vector>
 
 #define TIME_UNTIL_EXPLOSION 1000
 #define SIZE_OF_EXPLOSION 1000
+
+using namespace std;
 
 /*
 Description:
@@ -16,41 +21,43 @@ It is intended to start by going up. Once it reaches a certain age, it will crea
 
 
 General_Spark_Launcher::General_Spark_Launcher(Point start_pos, Vec start_vel):Spark(start_pos, start_vel)
-{}
+{
+
+}
 
 
-General_Spark_Launcher::dead()
+bool General_Spark_Launcher::dead()
 {
 	if(age == TIME_UNTIL_EXPLOSION)
 		return true;
 	return false;
 }
 
-General_Spark_Launcher::has_children()
+bool General_Spark_Launcher::has_children()
 {
 	if(age == TIME_UNTIL_EXPLOSION)
 		return true;
 	return false;
 }
 
-Vector<Spark> General_Spark_Launcher::create_explosion()
+vector<Spark> General_Spark_Launcher::create_explosion()
 {
-	Vector<Spark> new_sparks = new Vector<Spark>(); 
+	vector<Spark> new_sparks;
 	for(int i = 0; i < SIZE_OF_EXPLOSION; i++)
 	{
-		Point new_sparks_position = new Position(position.x, position.y, position.z);
-		Vec delta_velocity = random_vec();
-		Vec new_sparks_velocity = add(delta_velocity, velocity);
-		delete delta_velocity;
+		Point new_sparks_position(position.x, position.y, position.z);
+		Vec delta_velocity = Vec.random_vec();
+		Vec new_sparks_velocity = Vec.add(delta_velocity, velocity);
+		//delete delta_velocity;
 		
-		Spark new_spark = new Spark(new_sparks_position, new_sparks_velocity, 1);
+		Spark new_spark(new_sparks_position, new_sparks_velocity);
 
 		new_sparks.push_back(new_spark);
 	}
 	return new_sparks;
 }
 
-Vector<Spark> Spark::children()
+vector<Spark> General_Spark_Launcher::children()
 {
 	if(age == TIME_UNTIL_EXPLOSION)
 	{

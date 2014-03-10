@@ -1,13 +1,11 @@
-
-
-
-
-#ifndef _FIREWORKS_HPP_
-#define _FIREWORKS_HPP_
+#ifndef _SPARKS_HPP_
+#define _SPARKS_HPP_
 
 #include <GL/gl.h>
 #include "Utils.hpp"
+#include <vector>
 
+using namespace std;
 
 class Spark
 {
@@ -17,7 +15,7 @@ public:
 	virtual void update();
 	virtual bool dead();
 	virtual bool has_children();
-	virtual Vector<Spark> children();
+	virtual vector<Spark> children();
 
 	virtual void fill_buffer(float * addr);
 protected:
