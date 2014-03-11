@@ -13,6 +13,7 @@ class GL_Model
 		~GL_Model();
 		void set_geometry(float * geometry_, unsigned int geometry_size_);
 		void draw();
+		int loadShader(GLenum type, GLchar * shaderCode);
 	private:
 		GLfloat * geometry;
 		GLuint geometry_buffer;

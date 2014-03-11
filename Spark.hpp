@@ -18,7 +18,7 @@ public:
 	virtual vector<Spark> children();
 
 	virtual void fill_buffer(float * addr);
-	virtual void set_vertex(float * addr, Vec p)
+	virtual void set_vertex(float * addr, Vec p);
 protected:
 	Point position;
 	Vec velocity;

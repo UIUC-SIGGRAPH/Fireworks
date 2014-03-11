@@ -3,7 +3,9 @@
 
 #include <GL/gl.h>
 #include "Utils.hpp"
+#include "GL_Utils.hpp"
 #include "Camera.hpp"
+#include "Spark.hpp"
 #include <vector>
 
 using namespace std;

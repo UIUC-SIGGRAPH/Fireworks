@@ -9,35 +9,45 @@
 #include <GL/glext.h>
 #include <stdio.h>
 
+#define GEOMETRY_SIZE 3
+#define BYTES_PER_ELEMENT (GEOMETRY_SIZE * sizeof(float))
+
 GL_Model::GL_Model()
 {
 	glGenBuffersARB(1, &geometry_buffer);
 
-	const GLchar * vertexShaderCode = 
+	GLchar * vertexShaderCode = (GLchar *)
 		// This matrix member variable provides a hook to manipulate
 		// the coordinates of the objects that use this vertex shader
-		"uniform mat4 uMVPMatrix;" +
-		"attribute vec3 vPositionIn;" +
-		"void main() {" +
+		"uniform mat4 uMVPMatrix;" 
+		"attribute vec3 vPositionIn;" 
+		"void main() {" 
 		// the matrix must be included as a modifier of gl_Position
-		"  vec4 position = vec4(vPositionIn, 1.0);" +
-		"  gl_Position = uMVPMatrix * position;" +
+		"  vec4 position = vec4(vPositionIn, 1.0);" 
+		"  gl_Position = uMVPMatrix * position;" 
 		"}";
-	const GLchar * fragmentShaderCode =
-		"precision mediump float;" +
-		"void main() {" +
-		"  gl_FragColor = vec4(1.0, 1.0, 0.0, 1.0);" +	//test color
-		// "  gl_FragColor = gl_Position*10;" +
+	GLchar * fragmentShaderCode = (GLchar *)
+		"precision mediump float;"
+		"void main() {"
+		"  gl_FragColor = vec4(1.0, 1.0, 0.0, 1.0);"	//test color
 		"}";
 	vertexShader = loadShader(GL_VERTEX_SHADER, vertexShaderCode);
 	fragmentShader = loadShader(GL_FRAGMENT_SHADER, fragmentShaderCode);
-	glslProgram = GLES20.glCreateProgram();
+	glslProgram = glCreateProgram();
 	glAttachShader(glslProgram, vertexShader);
 	glAttachShader(glslProgram, fragmentShader);
 	glLinkProgram(glslProgram);
 
-	vertexPosHandle = glGetAttribLocation()
-
+	vertexPosHandle = glGetAttribLocation(glslProgram, "vPositionIn");
+	if(vertexPosHandle == -1)
+	{
+		printf("Unable to get handle\n");
+	}
+	MVPMatrixHandle = glGetAttribLocation(glslProgram, "uMVPMatrix");
+	if(MVPMatrixHandle == -1)
+	{
+		printf("Unable to get handle\n");
+	}
 }
 
 GL_Model::~GL_Model()
@@ -50,28 +60,25 @@ void GL_Model::set_geometry(float * geometry, unsigned int geometry_size_)
 	geometry_size = geometry_size_;
 	geometry_elements = geometry_size / (BYTES_PER_ELEMENT); 
 	glBindBuffer(GL_ARRAY_BUFFER, geometry_buffer);
-	glBufferData(GL_ARRAY_BUFFER, geometry_size, geometry_, GL_DYNAMIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, geometry_size, geometry, GL_DYNAMIC_DRAW);
 }
 
 void GL_Model::draw()
 {
-	glBindBuffer(GL_ARRAY_BUFFER, geometry_buffer);
 
 	glUseProgram(glslProgram);
 
-	glVertexAttribPointer();
+	glBindBuffer(GL_ARRAY_BUFFER, geometry_buffer);
+	glVertexAttribPointer(vertexPosHandle, 3, GL_FLOAT, GL_FALSE, 0, 0);
 
-	glTexCoordPointer(3, GL_FLOAT, sizeof(GLfloat)*8, (GLvoid *)(sizeof(GLfloat)*5));
-	glVertexPointer(3, GL_FLOAT, sizeof(GLfloat)*8, NULL);
-
-	glDrawArrays(GL_TRIANGLES, 0, glm.num_geometry);
+	glDrawArrays(GL_TRIANGLES, 0, geometry_elements);
 
 	glDisableClientState(GL_VERTEX_ARRAY);
 	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 
 }
 
-int GL_Model::loadShader(GLenum type, char[] shaderCode){
+int GL_Model::loadShader(GLenum type, GLchar * shaderCode){
 	int shader = glCreateShader(type);
 	int isCompiled;
 	glShaderSource(shader, 1, &shaderCode, NULL);

@@ -1,4 +1,4 @@
-OFILES= Camera.o GL_Utils.o model.o firework.o Utils.o
+OFILES= Camera.o GL_Utils.o Fireworks.o Utils.o GL_Utils.o
 
 all: main
 

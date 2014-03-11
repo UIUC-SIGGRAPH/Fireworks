@@ -2,7 +2,7 @@
 #include "Utils.hpp"
 #include "Spark.hpp"
 
-#define GEOMETRY_SIZE 8
+#define GEOMETRY_SIZE 3
 
 
 Spark::Spark(Point start_pos, Vec start_vel)
